@@ -1,0 +1,34 @@
+<div class="application-main-page">
+    <nav class="navbar navbar-light bg-light mb-3">
+        <span class="navbar-brand mb-0 h1">{{userloggedin.name | uppercase}}</span>
+        <a [routerLink]="['/home/mypost']" routerLinkActive="router-link-active"  class="btn btn-dark btn-lg active" role="button" aria-pressed="true">My Blogs</a>
+        <a [routerLink]="['/home/otherblog']" routerLinkActive="router-link-active"  class="btn btn-dark btn-lg active" role="button" aria-pressed="true">View Others Blogs</a>
+        <a [routerLink]="['']" routerLinkActive="router-link-active"  class="btn btn-dark btn-lg active" role="button" aria-pressed="true">Logout</a>
+
+
+      </nav>
+      <div class="card card-body mb-3">
+        <h2>Create Post</h2>
+      <form #postform ="ngForm" (ngSubmit)="addPost(postform)">
+        <div class="form-group">
+            <label>Title of the Post</label>
+            <input type="text" [(ngModel)]="postdetails.title" #blogtitle = "ngModel" name="title" id="title" class = "form-control"  [ngClass]="{'is-invalid': blogtitle.errors && blogtitle.touched}" required/>
+            <div [hidden]="!blogtitle.errors?.['required']" class="invalid-feedback">Title cannot be empty</div>
+
+
+        </div>
+
+        <div class="form-group">
+            <label>Content</label>
+            <textarea type="text" [(ngModel)]="postdetails.content" #blogcontent = "ngModel" name="content" id="content" class = "form-control" minlength="2000" [ngClass]="{'is-invalid': blogcontent.errors && blogcontent.touched}" required></textarea>
+
+            <div [hidden]="!blogcontent.errors?.['required']" class="invalid-feedback">Blog cannot be empty</div>
+            <div [hidden]="!blogcontent.errors?.['minlength']" class="invalid-feedback">Content should contain 2000 words</div>
+        </div>
+        <button class="btn btn-dark mt-4"[disabled]="!this.postform.form.valid">Add Blog</button>
+        
+
+      </form>
+      </div>
+    
+</div>

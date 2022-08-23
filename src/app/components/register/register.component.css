@@ -1,0 +1,40 @@
+
+.registered{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+  width:100vw;
+  height:100vh;
+  background: rgb(238,174,202);
+background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
+background-image: url("Images/register-background.png");
+background-size: 100% 100%;
+
+
+}
+
+.error-repass{
+    color:red;
+}
+
+.failed-register{
+    color:red;
+}
+.registercontainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(214, 218, 169);
+   
+    width:800px;
+    border: solid 1px;
+    border-radius: 20px;
+}
+
+.signinlink{
+    text-decoration: none;
+    color:blue
+
+}
+

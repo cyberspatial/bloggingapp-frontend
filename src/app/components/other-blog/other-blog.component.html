@@ -1,0 +1,37 @@
+<div>
+<nav class="navbar navbar-light bg-light mb-3">
+    <span class="navbar-brand mb-0 h1">{{loggedinuser.name | uppercase}}</span>
+    <a [routerLink]="['/home']" routerLinkActive="router-link-active"  class="btn btn-dark btn-lg active" role="button" aria-pressed="true">AddPost</a>
+    <a [routerLink]="['/home/mypost']" routerLinkActive="router-link-active"  class="btn btn-dark btn-lg active" role="button" aria-pressed="true">MyBlogs</a>
+    <a [routerLink]="['']" routerLinkActive="router-link-active"  class="btn btn-dark btn-lg active" role="button" aria-pressed="true">Logout</a>
+
+    </nav>
+
+    <h2>Other User Blog</h2>
+
+    <div *ngFor="let post of OtherUserlist" class="card card-body">
+        
+        <ul  class="card card-body">
+            
+            <li class="card card-body"><strong>Title:</strong><br>
+                {{post.title}} </li>
+            <li class="card card-body">
+                <strong>Blog:</strong><br>{{post.content}}</li> 
+     
+        </ul>
+        <form  #commentForm="ngForm" (ngSubmit)="addComment(commentForm)">
+       
+            <div class="form-group mb-3">
+                <label>Comment on this blog</label>
+                <input type="text" class="form-control" name="comment" [(ngModel)]="commentbyuser" #commentname="ngModel" >
+
+
+     </div>
+                
+        <button  type = "submit" class="btn btn-dark">Comment</button>
+        
+        </form>
+        
+      </div>
+
+    </div>

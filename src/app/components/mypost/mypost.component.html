@@ -1,0 +1,22 @@
+<div class="myblog-front">
+<nav class="navbar navbar-light bg-light mb-3">
+    <span class="navbar-brand mb-0 h1">{{userloggedin.name | uppercase}}</span>
+    <a [routerLink]="['/home']" routerLinkActive="router-link-active"  class="btn btn-dark btn-lg active" role="button" aria-pressed="true">AddPost</a>
+    <a [routerLink]="['/home/otherblog']" routerLinkActive="router-link-active"  class="btn btn-dark btn-lg active" role="button" aria-pressed="true">View Others Blogs</a>
+    <a [routerLink]="['']" routerLinkActive="router-link-active"  class="btn btn-dark btn-lg active" role="button" aria-pressed="true">Logout</a>
+
+
+  </nav>
+  <div class="card card-body">
+    <h2>
+        You have posted the following blogs
+    </h2>
+    <ul class="card card-body" *ngFor="let post of bloglist">
+        <li class="card card-body"><strong>Title:</strong><br>
+            {{post.title}}</li>
+        <li class="card card-body">
+            <strong>Blog:</strong><br>{{post.content}}</li> 
+        <button class="btn btn-dark mb-3 mt-3" (click)="deleteblog(post,post.email)">Delete</button>     
+    </ul>
+  </div>
+  </div>

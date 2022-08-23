@@ -1,0 +1,59 @@
+<div class="registered">
+<div class= " registercontainer">
+    <h2> Registration form </h2>
+    <form #registerform="ngForm"  (ngSubmit)="addUserData(registerform)">
+       <div class="form-group mb-3">
+        <label>Name</label>
+        <input  [(ngModel)]="register.name" type="text" class="form-control" name="name" id='name' [ngClass]="{'is-invalid' : userName.errors && userName.touched}" #userName="ngModel"  required minlength="2"/>
+         <div [hidden]="!userName.errors?.['required']" class="invalid-feedback"> Name is necessary</div>
+       </div>
+       <div class="form-group mb-3">
+        <label>Email</label>
+        <input [(ngModel)]="register.email"  #userEmail="ngModel" [ngClass]="{'is-invalid': userEmail.errors && userEmail.touched}" type="email" class="form-control" id= "useremail" name="email" id="email" required pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"/>
+        <div [hidden]="!userEmail.errors?.['required']" class="invalid-feedback">Email is necessary</div>
+        <div [hidden]="!userEmail.errors?.['pattern']" class="invalid-feedback"> Email format required</div>
+       </div>
+
+
+       <div class="form-group mb-3">
+        <label>Login Id</label>
+        <input type="email" class="form-control" name="loginid"  value ={{register.email}} id = "loginid" [disabled]="true" />
+         
+       </div>
+
+       <div class="form-group mb-3">
+        <label>Password</label>
+        <input [(ngModel)] = "register.password" #userPass="ngModel" [ngClass]="{'is-invalid':userPass.errors && userPass.touched}" type="password" class="form-control" name="Password" minlength="7" id="password" name="password" required/>
+         <div [hidden]="!userPass.errors?.['required']" class="invalid-feedback">Password is required</div>
+         <div [hidden]="!userPass.errors?.['minlength']" class="invalid-feedback">Password minimum length is 7</div>
+       </div>
+
+       <div class="form-group mb-3">
+        <label>Reenter Password</label>
+        <input [(ngModel)] = "register.repass" [ngClass]="{'is-invalid':repass.errors && repass.touched}" (ngModelChange)="PassChange($event)" type="password" class="form-control" name="repass"  #repass ="ngModel" required/>
+
+        <div [hidden]="!repass.errors?.['required']" class="invalid-feedback">Please enter the Password</div>
+         
+        <!--<div *ngIf="!isValid" class="invalid-feedback error-repass" >Please put the same password as above</div>-->
+         
+         <div class="error-repass" *ngIf="(register.repass !=register.password) && repass.touched">Please type the same password</div>
+          </div>
+         <button type ="submit"class="btn btn-success"  [disabled]="!isValid" >Register</button>
+    </form>
+    <div class="sign-in" >Already have an account?&nbsp;<a class="signinlink" [routerLink]="['/login']" routerLinkActive="router-link-active">Signin</a></div>
+    <div class="failed-register" *ngIf="!isRegistered">Failed to register.Try again!
+      <br>
+      
+      Tip:
+      <ul>
+       <li>Try to change the email. User already will be existing!!</li>
+       <li>Name is required</li>
+       <li>Email is required</li>
+      </ul>
+    </div>
+
+    
+</div>
+
+</div>
+

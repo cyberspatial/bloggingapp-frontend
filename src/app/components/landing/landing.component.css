@@ -1,0 +1,7 @@
+.home_image{
+    width:100vw;
+    height:calc(100vh - 70px);
+    background-image: url("../landing/Images/image01.jpg");
+    background-size: 100% 100%;
+
+}
